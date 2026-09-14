@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Downloaded course content (videos/images/markdown)
+output/
+output_*/
+
+# Chrome profile used by Puppeteer (contains session cookies/login data)
+.chrome-profile/
+
+# Scraped lesson data & classroom structure (personal/course-specific, can be large)
+lesson-data*.json
+classroom-structure.json
+
+# Misc
+*.log
+.env
