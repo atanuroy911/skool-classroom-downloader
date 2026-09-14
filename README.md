@@ -81,6 +81,18 @@ it drives a real Chrome window with Puppeteer and downloads videos as it goes
 
    Output is written to `output/`, same layout as Workflow A.
 
+## Example output
+
+The `output/` folder in this repo is a **trimmed sample** (2 modules x 2 lessons
+per course, images included, videos excluded via `.gitignore`) so you can see
+what a downloaded lesson looks like directly in GitHub's Markdown viewer —
+e.g. [`output/Ad Creators Lab/INDEX.md`](output/Ad%20Creators%20Lab/INDEX.md).
+Running the scripts yourself against your own community will regenerate the
+full set of modules/lessons locally.
+
+`lesson-data-*.json` files are the raw scraped data (from `extract-lessons.js`)
+used to produce that sample output — kept for reference/reproducibility.
+
 ## Project files
 
 | File | Purpose |

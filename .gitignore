@@ -1,16 +1,16 @@
 # Dependencies
 node_modules/
 
-# Downloaded course content (videos/images/markdown)
-output/
-output_*/
-
 # Chrome profile used by Puppeteer (contains session cookies/login data)
 .chrome-profile/
 
-# Scraped lesson data & classroom structure (personal/course-specific, can be large)
-lesson-data*.json
-classroom-structure.json
+# Downloaded videos (large binary files — keep md/images/json viewable on GitHub)
+output/**/videos/
+output_*/**/videos/
+*.mp4
+*.m3u8
+*.mov
+*.webm
 
 # Misc
 *.log
