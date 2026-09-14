@@ -6,9 +6,9 @@
 ---
 
 ## Group Replays
-- [2025 Call Links (Ryan M)](./Group Replays/2025 Call Links (Ryan M).md)
-- [2026 Ryan B Calls](./Group Replays/2026 Ryan B Calls.md)
+- [2025 Call Links (Ryan M)](./Group%20Replays/2025%20Call%20Links%20%28Ryan%20M%29.md)
+- [2026 Ryan B Calls](./Group%20Replays/2026%20Ryan%20B%20Calls.md)
 
 ## How to Generate Leads
-- [1. Ad Copywriting](./How to Generate Leads/1. Ad Copywriting.md)
-- [1. Basics Of Meta Ads](./How to Generate Leads/1. Basics Of Meta Ads.md)
+- [1. Ad Copywriting](./How%20to%20Generate%20Leads/1.%20Ad%20Copywriting.md)
+- [1. Basics Of Meta Ads](./How%20to%20Generate%20Leads/1.%20Basics%20Of%20Meta%20Ads.md)

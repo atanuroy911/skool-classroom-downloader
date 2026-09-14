@@ -137,6 +137,14 @@ function downloadFile(url, dest) {
   });
 }
 
+// Encode a relative path for use inside a Markdown link/image target
+// (spaces, parens, etc. otherwise break Markdown link parsing).
+function encodePath(relPath) {
+  return relPath.split('/')
+    .map(seg => encodeURIComponent(seg).replace(/[()!'*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase()))
+    .join('/');
+}
+
 function imgExt(url) {
   const e = path.extname(url.split('?')[0]).replace('.', '').toLowerCase();
   return ['jpg','jpeg','png','gif','webp','svg','avif'].includes(e) ? e : 'jpg';
@@ -164,7 +172,7 @@ function buildMd(lesson, images, moduleDir) {
     lines.push('## 🎬 Video');
     lines.push('');
     const rel = path.relative(moduleDir, lesson.videoLocalPath).replace(/\\/g, '/');
-    lines.push(`**[📥 ${lesson.videoLocalFile}](./${rel})**`);
+    lines.push(`**[📥 ${lesson.videoLocalFile}](./${encodePath(rel)})**`);
     lines.push('');
   }
   if (lesson.videoUrl) {
@@ -184,7 +192,7 @@ function buildMd(lesson, images, moduleDir) {
     lines.push('');
     for (const img of images) {
       const rel = path.relative(moduleDir, img.localPath).replace(/\\/g, '/');
-      lines.push(`![${img.alt || 'image'}](./${rel})`);
+      lines.push(`![${img.alt || 'image'}](./${encodePath(rel)})`);
     }
     lines.push('');
   }
@@ -309,7 +317,7 @@ async function main() {
     indexLines.push(`## ${mod}`);
     for (const l of ls) {
       const icon = l.videoUrl || l.externalVideoLink ? '🎬' : '📄';
-      indexLines.push(`- ${icon} [${l.title}](./${safe(mod)}/${safe(l.title)}.md)`);
+      indexLines.push(`- ${icon} [${l.title}](./${encodePath(safe(mod))}/${encodePath(safe(l.title))}.md)`);
     }
     indexLines.push('');
   }

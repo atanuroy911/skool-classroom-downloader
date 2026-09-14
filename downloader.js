@@ -114,6 +114,14 @@ function getImageExtension(url) {
   return validExts.includes(ext) ? ext : 'jpg';
 }
 
+// Encode a relative path for use inside a Markdown link/image target
+// (spaces, parens, etc. otherwise break Markdown link parsing).
+function encodePath(relPath) {
+  return relPath.split('/')
+    .map(seg => encodeURIComponent(seg).replace(/[()!'*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase()))
+    .join('/');
+}
+
 function sanitize(name) {
   return name.replace(/[<>:"/\\|?*\x00-\x1F]/g, '').replace(/\s+/g, ' ').trim().substring(0, 80);
 }
@@ -396,7 +404,7 @@ function buildMarkdown(lesson, content, videoResult, downloadedImages, imageDir,
 
     if (videoResult.localFile) {
       const relPath = path.relative(moduleDir, videoResult.localPath).replace(/\\/g, '/');
-      lines.push(`**Local file:** [${videoResult.localFile}](./${relPath})`);
+      lines.push(`**Local file:** [${videoResult.localFile}](./${encodePath(relPath)})`);
       lines.push('');
     }
 
@@ -446,7 +454,7 @@ function buildMarkdown(lesson, content, videoResult, downloadedImages, imageDir,
     for (const img of downloadedImages) {
       const relPath = path.relative(moduleDir, img.localPath).replace(/\\/g, '/');
       const alt = img.alt || 'image';
-      lines.push(`![${alt}](./${relPath})`);
+      lines.push(`![${alt}](./${encodePath(relPath)})`);
     }
     lines.push('');
     lines.push('---');
@@ -657,7 +665,7 @@ async function generateIndex(modules) {
       const l = m.lessons[li];
       const lSlug = sanitize(l.title);
       const icon = l.hasVideo ? '🎬' : '📄';
-      lines.push(`  ${li + 1}. ${icon} [${l.title}](./${mSlug}/${lSlug}.md)`);
+      lines.push(`  ${li + 1}. ${icon} [${l.title}](./${encodePath(mSlug)}/${encodePath(lSlug)}.md)`);
     }
     lines.push('');
   }
